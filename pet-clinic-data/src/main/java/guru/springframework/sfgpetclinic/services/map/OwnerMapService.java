@@ -1,11 +1,15 @@
 package guru.springframework.sfgpetclinic.services.map;
 
 import guru.springframework.sfgpetclinic.model.Owner;
-import guru.springframework.sfgpetclinic.services.CrudService;
+import guru.springframework.sfgpetclinic.services.OwnerService;
 
 import java.util.Set;
 
-public class OwnerMapService extends AbstractMapService<Owner,Long> implements CrudService<Owner,Long> {
+/* should implement OwnerService
+   Get rid of the generics now because the interface actually implements those
+   on the OwnerService.
+ */
+public class OwnerMapService extends AbstractMapService<Owner,Long> implements OwnerService {
     @Override
     public Owner findById(Long id) {
         return super.findById(id);
@@ -30,5 +34,11 @@ public class OwnerMapService extends AbstractMapService<Owner,Long> implements C
     @Override
     public Owner save(Owner owner) {
         return super.save(owner.getId(),owner);
+    }
+
+     // to implement later
+    @Override
+    public Owner findByLastName(String lastName) {
+        return null;
     }
 }

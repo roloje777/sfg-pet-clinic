@@ -1,11 +1,15 @@
 package guru.springframework.sfgpetclinic.services.map;
 
 import guru.springframework.sfgpetclinic.model.Vet;
-import guru.springframework.sfgpetclinic.services.CrudService;
+import guru.springframework.sfgpetclinic.services.VetService;
 
 import java.util.Set;
 
-public class VetMapService extends AbstractMapService<Vet,Long> implements CrudService<Vet,Long> {
+/* should implement OwnerService
+   Get rid of the generics now because the interface actually implements those
+   on the OwnerService.
+ */
+public class VetMapService extends AbstractMapService<Vet,Long> implements VetService {
     @Override
     public Vet findById(Long id) {
         return super.findById(id);

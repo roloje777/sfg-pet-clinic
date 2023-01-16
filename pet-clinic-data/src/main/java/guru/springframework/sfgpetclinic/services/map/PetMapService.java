@@ -2,6 +2,7 @@ package guru.springframework.sfgpetclinic.services.map;
 
 import guru.springframework.sfgpetclinic.model.Pet;
 import guru.springframework.sfgpetclinic.services.PetService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
@@ -9,6 +10,7 @@ import java.util.Set;
    Get rid of the generics now because the interface actually implements those
    on the PetService.
  */
+@Service
 public class PetMapService extends AbstractMapService<Pet,Long> implements PetService {
     @Override
     public Pet findById(Long id) {

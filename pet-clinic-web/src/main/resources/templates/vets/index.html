@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en"  xmlns:th="http://www.thymeleaf.org" >
+<!- replaces the body with fragments/layout -->
+<html lang="en"  xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'vets')}">
 <head>
     <meta charset="UTF-8">
     <title>List of Vets</title>
@@ -7,9 +8,10 @@
 <body>
 <!-- The line below is for IntelliJ and not Thymeleaf -->
 <!--/*@thymesVar id="owner" type="guru.springframework.sfgpetclinic.model.Owner"*/-->
-<h1 th:text="'List of Vets'">List of Vets ...</h1>
-
-<table>
+<!-- changed heading to h2 -->
+<h2 th:text="'List of Vets'">List of Vets ...</h2>
+<!-- added bootstrap class to table -->
+<table class="table table-striped">
     <thead>
     <tr>
         <th>Id</th>

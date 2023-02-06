@@ -1,19 +1,23 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!- replaces the body with fragments/layout -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'owners')}">
 <head>
     <meta charset="UTF-8">
     <title>List of Pet Owners</title>
 </head>
 <body>
 <!--/*@thymesVar id="owner" type="guru.springframework.sfgpetclinic.model.Owner"*/-->
+<!-- changed heading to h2 -->
 <h1 th:text="'List of Owners'">Owners List</h1>
 
-<table>
+<!-- added class to table -->
+<table class="table table-striped">
     <thead>
     <tr>
-        <th>Id</th>
-        <th>First Name</th>
-        <th>Last Name</th>
+        <!-- added inline style properties -->
+        <th style="width:150px">Id</th>
+        <th style="width:150px">First Name</th>
+        <th style="width:150px">Last Name</th>
     </tr>
     </thead>
     <tbody>

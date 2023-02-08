@@ -1,7 +1,10 @@
 package guru.springframework.sfgpetclinic.services.map;
 
 import guru.springframework.sfgpetclinic.model.Owner;
+import guru.springframework.sfgpetclinic.model.Pet;
 import guru.springframework.sfgpetclinic.services.OwnerService;
+import guru.springframework.sfgpetclinic.services.PetService;
+import guru.springframework.sfgpetclinic.services.PetTypeService;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
@@ -12,6 +15,17 @@ import java.util.Set;
  */
 @Service
 public class OwnerMapService extends AbstractMapService<Owner,Long> implements OwnerService {
+
+    /* we need these services spo that we can save the pets to the owner */
+    private final PetTypeService petTypeService;
+    private final PetService petService;
+
+    public OwnerMapService(PetTypeService petTypeService, PetService petService) {
+        this.petTypeService = petTypeService;
+        this.petService = petService;
+    }
+
+
     @Override
     public Owner findById(Long id) {
         return super.findById(id);
@@ -50,7 +64,39 @@ behave like Hibernate.
      */
     @Override
     public Owner save(Owner owner) {
-        return super.save(owner);
+        /*  if the owner is null return null
+            else
+                if the owners has pets, get these pets
+                    if the pet type exists
+                       and petType id is null then save the pet type and set it
+                    else
+                        throw an exception as pet type is rquired
+                    get the pet id
+                        save and set the pet
+         */
+        if(owner!= null){
+            if (owner.getPets() != null) {
+                owner.getPets().forEach(pet -> {
+                    if (pet.getPetType() != null){
+                        if(pet.getPetType().getId() == null){
+                            pet.setPetType(petTypeService.save(pet.getPetType()));
+                        }
+                    } else {
+                        throw new RuntimeException("Pet Type is required");
+                    }
+
+                    if(pet.getId() == null){
+                        Pet savedPet = petService.save(pet);
+                        pet.setId(savedPet.getId());
+                    }
+                });
+            }
+
+            return super.save(owner);
+
+        } else {
+            return null;
+        }
     }
 
      // to implement later

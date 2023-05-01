@@ -1,1 +1,2 @@
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/roloje777/sfg-pet-clinic/tree/master.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/roloje777/sfg-pet-clinic/tree/master)
 # sfg-pet-clinic

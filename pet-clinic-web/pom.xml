@@ -63,6 +63,14 @@
             <artifactId>bootstrap</artifactId>
             <version>${webjars-bootstrap.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>jakarta.validation</groupId>
+            <artifactId>jakarta.validation-api</artifactId>
+
+        </dependency>
+
+
         <!-- end of webjars -->
 
         <dependency>

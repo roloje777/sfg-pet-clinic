@@ -49,5 +49,8 @@ entity or mapped superclass in conjunction with the Id annotation.
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    public boolean isNew() {
+        return this.id == null;
+    }
 
 }

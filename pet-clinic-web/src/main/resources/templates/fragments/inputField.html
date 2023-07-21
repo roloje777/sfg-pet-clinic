@@ -1,5 +1,5 @@
-<html>
-<body>
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
   <form>
     <th:block th:fragment="input (label, name, type)">
       <div th:with="valid=${!#fields.hasErrors(name)}"

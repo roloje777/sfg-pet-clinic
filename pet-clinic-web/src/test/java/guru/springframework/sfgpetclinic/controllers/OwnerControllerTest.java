@@ -22,7 +22,7 @@ import static org.hamcrest.Matchers.*;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-import static org.mockito.Mockito.verifyNoInteractions;
+import static org.mockito.Mockito.verifyZeroInteractions;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 
 @ExtendWith(MockitoExtension.class)
@@ -55,7 +55,7 @@ class OwnerControllerTest {
                 .andExpect(view().name("owners/findOwners"))
                 .andExpect(model().attributeExists("owner"));
 
-            verifyNoInteractions(ownerService);// verifyZeroInteraction has been depreciated, so use verifyNoInteraction
+            verifyZeroInteractions(ownerService);// verifyZeroInteraction has been depreciated, so use verifyNoInteraction
     }
 
     @Test
@@ -71,6 +71,7 @@ class OwnerControllerTest {
     @Test
     void processFindFormReturnOne() throws Exception {
         when(ownerService.findAllByLastNameLike(anyString())).thenReturn(Arrays.asList(Owner.builder().id(1l).build()));
+
         mockMvc.perform(get("/owners"))
                 .andExpect(status().is3xxRedirection())
                 .andExpect(view().name("redirect:/owners/1"));
@@ -94,8 +95,7 @@ class OwnerControllerTest {
                 .andExpect(view().name("owners/createOrUpdateOwnerForm"))
                 .andExpect(model().attributeExists("owner"));
 
-        //verifyZeroInteractions(ownerService);// changed to below
-        verifyNoInteractions(ownerService);
+        verifyZeroInteractions(ownerService);
     }
 
     @Test
@@ -122,7 +122,7 @@ class OwnerControllerTest {
                 .andExpect(model().attributeExists("owner"));
 
         //verifyZeroInteractions(ownerService);
-        verifyNoInteractions(ownerService);
+        verifyZeroInteractions(ownerService);
     }
 
     @Test

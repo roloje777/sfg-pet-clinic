@@ -1,9 +1,14 @@
 package guru.springframework.sfgpetclinic.controllers;
 
+import guru.springframework.sfgpetclinic.model.Vet;
 import guru.springframework.sfgpetclinic.services.VetService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.Set;
 
 /*
   Note the Controller uses a Service to get the information
@@ -26,5 +31,11 @@ public class VetController {
            which is the view part of MVC
          */
         return "vets/index";
+    }
+  // By default @ResponceBody returns a JSON object
+    @GetMapping("/api/vets")
+    public @ResponseBody Set<Vet> getVetsJson(){
+
+        return vetService.findAll();
     }
 }
